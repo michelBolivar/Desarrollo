@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.debug.ui.snippetEditor.NewSnippetFileCreationWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.emf.codegen.ecore.ui.wizardCategory"/>
+			<item value="org.eclipse.jst.ejb.ui"/>
+			<item value="org.eclipse.jdt.ui.java"/>
+			<item value="org.eclipse.jdt.ui.java/org.eclipse.jdt.debug.ui.java"/>
+			<item value="org.eclipse.jdt.ui.java/org.eclipse.jdt.junit"/>
+			<item value="org.eclipse.jst.j2ee.internal"/>
+			<item value="org.eclipse.emf.codegen.ui.JETNewWizards"/>
+			<item value="org.eclipse.wst.jsdt.ui.java"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.internal.QuickAccess">
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_WIDTH" value="450"/>
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_HEIGHT" value="506"/>
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_SIZE" value="true"/>
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_LOCATION" value="false"/>
+		<list key="orderedElements">
+			<item value="/CMAPP/src/main/webapp/pages/principal.xhtml"/>
+			<item value="org.eclipse.jst.ws.internal.ui.preferences.TestFacilityDefaultsPreferencePage"/>
+			<item value="/CMAPP/src/main/java/com/usta/cmapp/security/FilterCheck.java"/>
+			<item value="/coronavirus_ejb/src/main/java/com/usta/coronavirus/bean/DaoObjectMysql.java"/>
+			<item value="/CMAPP/src/main/webapp/login/login.xhtml"/>
+			<item value="/CMAPP/src/main/java/com/usta/cmapp/control/PrincipalController.java"/>
+			<item value="/CMAPP/src/main/webapp/WEB-INF/web.xml"/>
+			<item value="/CMAPP/src/main/webapp/WEB-INF/template/con-template.xhtml"/>
+			<item value="/CMAPP/src/main/java/com/usta/cmapp/control/LoginController.java"/>
+			<item value="/CMAPP/src/main/resources/com/usta/cmapp/control/messages.properties"/>
+			<item value="/coronavirus_ejb/src/main/java/com/usta/coronavirus/interfaces/IObjectQueryMysql.java"/>
+			<item value="/CMAPP/src/main/java/com/usta/cmapp/constants/EnumDataBase.java"/>
+			<item value="/coronavirus_ejb/src/main/resources/META-INF/mysql-orm.xml"/>
+			<item value="/coronavirus_ejb/src/main/java/com/usta/coronavirus/interfaces/IObjectQueryPostgres.java"/>
+			<item value="/coronavirus_ejb/src/main/java/com/usta/coronavirus/service/ServicesDao.java"/>
+			<item value="/coronavirus_ejb/src/main/resources/META-INF/persistence.xml"/>
+		</list>
+		<list key="orderedProviders">
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.preferences"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+		</list>
+		<list key="textEntries">
+			<item value="3"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="2"/>
+			<item value="1"/>
+			<item value="2"/>
+			<item value="2"/>
+			<item value="2"/>
+			<item value="2"/>
+			<item value="2"/>
+			<item value="1"/>
+			<item value="2"/>
+			<item value="1"/>
+			<item value="3"/>
+			<item value="1"/>
+		</list>
+		<list key="textArray">
+			<item value="pri"/>
+			<item value="pr"/>
+			<item value="prin"/>
+			<item value="tes"/>
+			<item value="filt"/>
+			<item value="dao"/>
+			<item value="login"/>
+			<item value="log"/>
+			<item value="princi"/>
+			<item value="web.x"/>
+			<item value="web"/>
+			<item value="con-te"/>
+			<item value="con"/>
+			<item value="logi"/>
+			<item value="lo"/>
+			<item value="mes"/>
+			<item value="me"/>
+			<item value="iob"/>
+			<item value="io"/>
+			<item value="enum"/>
+			<item value="mysq"/>
+			<item value="my"/>
+			<item value="iobje"/>
+			<item value="servicesd"/>
+			<item value="servi"/>
+			<item value="ser"/>
+			<item value="per"/>
+		</list>
+	</section>
+</section>

@@ -1,0 +1,79 @@
+package com.coronavirus_mysql.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.persistence.*;
+import java.util.Date;
+
+
+/**
+ * The persistent class for the personas database table.
+ * 
+ */
+@Entity
+@Table(name="personas")
+
+public class Persona implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	
+	public static final String FIND_ALL="Personas.Find_All";
+	
+	public static final String FIND_BY_DOCUMENT ="Personas.FIND_BY_DOCUMENT";
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_persona")
+	private int idPersona;
+	
+	
+	@Column(name="documento")
+	private String documento;
+
+	@Column(name="email")
+	private String email;
+
+	@Column(name="estatura")
+	private float estatura;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="fecha_nacimiento")
+	private Date fechaNacimiento;
+
+	@Column(name="genero")
+	private String genero;
+
+	@Column(name="grupo_sanguineo")
+	private String grupoSanguineo;
+
+	@Column(name="id_ciudad")
+	private int idCiudad;
+
+	@Column(name="id_tipo_documento")
+	private int idTipoDocumento;
+	
+	@Column(name="peso")
+	private float peso;
+
+	@Column(name="primer_apellido")
+	private String primerApellido;
+
+	@Column(name="primer_nombre")
+	private String primerNombre;
+
+	@Column(name="segundo_apellido")
+	private String segundoApellido;
+
+	@Column(name="segundo_nombre")
+	private String segundoNombre;
+
+	@Column(name="telefono")
+	private BigDecimal telefono;
+
+	public Persona() {
+	}
+
+	
+
+}

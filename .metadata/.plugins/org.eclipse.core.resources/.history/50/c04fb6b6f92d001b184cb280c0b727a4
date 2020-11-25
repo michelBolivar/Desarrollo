@@ -1,0 +1,8 @@
+package com.usta.cmapp.constants;
+
+public class Snippet {
+	public static void main(String[] args) {
+		EnumRHBlood
+	}
+}
+

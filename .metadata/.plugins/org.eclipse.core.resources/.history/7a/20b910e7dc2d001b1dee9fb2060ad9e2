@@ -1,0 +1,46 @@
+package com.coronavirus_mysql.model;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the tipodocumento database table.
+ * 
+ */
+@Entity
+@Table(name="tipodocumento")
+public class Tipodocumento implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	public static final String FIND_ALL="Tipodocumento.Find_All";
+	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_tipo_documento")
+	private int idTipoDocumento;
+
+	@Column(name="descripcion")
+	private String descripcion;
+
+	public Tipodocumento() {
+	}
+
+	public int getIdTipoDocumento() {
+		return this.idTipoDocumento;
+	}
+
+	public void setIdTipoDocumento(int idTipoDocumento) {
+		this.idTipoDocumento = idTipoDocumento;
+	}
+
+	public String getDescripcion() {
+		return this.descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+}

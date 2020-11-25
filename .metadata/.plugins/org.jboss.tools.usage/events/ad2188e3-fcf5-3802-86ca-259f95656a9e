@@ -1,0 +1,11 @@
+#Tue Nov 24 05:05:59 COT 2020
+vl=How many times the 'Finish' button pressed during the day
+l=Wizard class name
+ct=jbt
+d=1606212359806
+c=0
+cmp=usage
+a=finishWizard
+cl=org.eclipse.jdt.internal.debug.ui.snippeteditor.NewSnippetFileCreationWizard
+v=2.2.300
+s=1

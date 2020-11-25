@@ -1,0 +1,315 @@
+package com.usta.cmapp.control;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.io.IOException;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.Properties;
+
+import javax.faces.bean.ManagedBean;
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.FlowEvent;
+
+import com.coronavirus_mysql.model.Ciudade;
+import com.coronavirus_mysql.model.Persona;
+import com.coronavirus_mysql.model.Tipodocumento;
+import com.usta.cmapp.constants.EnumDataBase;
+import com.usta.cmapp.constants.EnumRHBlood;
+import com.usta.coronavirus.service.ServicesDao;
+
+
+@ManagedBean(name = "principal")
+@SessionScoped
+
+public class PrincipalController implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Properties properties;
+	private String usLoged;
+	private String userAcces;
+	private Tipodocumento tipoDocumento;
+	private Ciudade ciudad;
+	private String phone;
+	private Persona newPersona;
+	private final static String PAGE_PRINCIPAL = "../login/login.faces";
+
+	private List<Tipodocumento> tipoDocumentos;
+	private List<Ciudade> listaCudad;
+	private List<EnumRHBlood> rhlist;
+
+@EJB
+	private ServicesDao<Object> servicesDao;
+	
+	
+
+	public PrincipalController() {
+		try {
+
+			properties = new Properties();
+			userAcces = null;
+			newPersona = new Persona();
+			ciudad = new Ciudade();
+			tipoDocumento = new Tipodocumento();
+			tipoDocumentos = new ArrayList<Tipodocumento>();
+			listaCudad = new ArrayList<Ciudade>();
+			rhlist = new ArrayList<EnumRHBlood>();
+			chargeProperties();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void chargeProperties() {
+
+		try {
+			properties.load(PrincipalController.class.getResourceAsStream("messages.properties"));
+			userAcces = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+					.get(LoginController.USER_AUTENTICH.toUpperCase());
+
+			usLoged = ((String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+					.get(LoginController.AUTH_KEY)).toUpperCase();
+
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					properties.getProperty("errorGeneral"), properties.getProperty("errorCargarPropiedades")));
+		}
+	}
+
+	/**
+	 * Este metdo se einiliazida apenas se carga la clase y despues que crea las
+	 * variables No recibe invocacion de nigun ciente , el cliente es el mismo
+	 * seervidor , cuando la aplicacion es inicializazda , funciona cuando estamos
+	 * cargando listas
+	 */
+	@PostConstruct
+	public void chargeData() {
+
+		try {
+			
+			List<Object> d = servicesDao.findAll(Tipodocumento.class, EnumDataBase.MYSQL.getId());
+
+			//tipoDocumentos.add((Tipodocumento) servicesDao.findAll(Tipodocumento.class,
+			// EnumDataBase.MYSQL.getId()));
+
+			for (Object o : d) {
+				tipoDocumentos.add((Tipodocumento) o);
+			}
+
+			List<Object> c = servicesDao.findAll(Ciudade.class, EnumDataBase.MYSQL.getId());
+
+			for (Object o : c) {
+				listaCudad.add((Ciudade) o);
+			}
+			// listaCudad.add((Ciudade) servicesDao.findAll(Ciudade.class,
+			// EnumDataBase.MYSQL.getId()));
+			rhlist.add(EnumRHBlood.ABPOS);
+			rhlist.add(EnumRHBlood.ABNEG);
+			rhlist.add(EnumRHBlood.APOS);
+			rhlist.add(EnumRHBlood.ANEG);
+			rhlist.add(EnumRHBlood.BPOS);
+			rhlist.add(EnumRHBlood.BNEGA);
+			rhlist.add(EnumRHBlood.OPOS);
+			rhlist.add(EnumRHBlood.ONGE);
+			
+			System.out.println(rhlist);
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					properties.getProperty("errorGeneral"), properties.getProperty("errorCargarPropiedades")));
+
+		}
+
+	}
+
+	/**
+	 * valida para hacer el paso la siguiente pestaña
+	 * 
+	 * @param event
+	 * @return
+	 */
+
+	public String onFlowProcess(FlowEvent event) {
+		String result = null;
+
+		if (validateDataPerson()) {
+
+			result = event.getNewStep();
+		} else {
+
+			result = event.getOldStep();
+
+		}
+		return result;
+	}
+
+	/*
+	 * validamos los registros de la persona y valida que la fecha de nacimiento sea
+	 * menor al dia de hoy
+	 */
+
+	private boolean validateDataPerson() {
+
+		boolean flag = false;
+		if ((newPersona.getDocumento() != null && !newPersona.getDocumento().equals(""))
+				&& (newPersona.getPrimerNombre() != null && newPersona.getPrimerNombre().equals(""))
+				&& (newPersona.getPrimerApellido() != null && newPersona.getPrimerApellido().equals(""))
+				&& (newPersona.getFechaNacimiento() != null && newPersona.getFechaNacimiento().equals(""))
+				&& (phone != null && !phone.equals(""))) {
+
+			Date today = new Date(0);
+
+			if (newPersona.getFechaNacimiento().before(today)) {
+				flag = true;
+			} else {
+				flag = false;
+			}
+
+		} else {
+			flag = false;
+
+		}
+
+		return flag;
+	}
+
+	/**
+	 * metodo para crear la persona desde el formulario
+	 */
+
+	public void createPerson() {
+
+		try {
+
+			if (validateDataPerson()) {
+
+				servicesDao.create(newPersona, EnumDataBase.MYSQL.getId());
+
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+						properties.getProperty(""), properties.getProperty("")));
+
+			} else {
+
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+						properties.getProperty(""), properties.getProperty("")));
+			}
+
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					properties.getProperty(""), properties.getProperty("")));
+
+		}
+
+	}
+
+	public String logut() {
+
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("principal");
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("pesoncontroller");
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+					.remove(LoginController.USER_AUTENTICH);
+			FacesContext.getCurrentInstance().getExternalContext().redirect(PAGE_PRINCIPAL);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public final Properties getProperties() {
+		return properties;
+	}
+
+	public final void setProperties(Properties properties) {
+		this.properties = properties;
+	}
+
+	public final String getUsLoged() {
+		return usLoged;
+	}
+
+	public final void setUsLoged(String usLoged) {
+		this.usLoged = usLoged;
+	}
+
+	public final String getUserAcces() {
+		return userAcces;
+	}
+
+	public final void setUserAcces(String userAcces) {
+		this.userAcces = userAcces;
+	}
+
+	public final Tipodocumento getTipoDocumento() {
+		return tipoDocumento;
+	}
+
+	public final void setTipoDocumento(Tipodocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+	public final Ciudade getCiudad() {
+		return ciudad;
+	}
+
+	public final void setCiudad(Ciudade ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public final String getPhone() {
+		return phone;
+	}
+
+	public final void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public final Persona getNewPersona() {
+		return newPersona;
+	}
+
+	public final void setNewPersona(Persona newPersona) {
+		this.newPersona = newPersona;
+	}
+
+	public final List<Tipodocumento> getTipoDocumentos() {
+		return tipoDocumentos;
+	}
+
+	public final void setTipoDocumentos(List<Tipodocumento> tipoDocumentos) {
+		this.tipoDocumentos = tipoDocumentos;
+	}
+
+	public final List<Ciudade> getListaCudad() {
+		return listaCudad;
+	}
+
+	public final void setListaCudad(List<Ciudade> listaCudad) {
+		this.listaCudad = listaCudad;
+	}
+
+	public final List<EnumRHBlood> getRhlist() {
+		return rhlist;
+	}
+
+	public final void setRhlist(List<EnumRHBlood> rhlist) {
+		this.rhlist = rhlist;
+	}
+
+
+
+	/* metodos de get y set */
+
+	
+
+}

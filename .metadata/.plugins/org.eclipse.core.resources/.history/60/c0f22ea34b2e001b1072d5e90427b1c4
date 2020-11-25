@@ -1,0 +1,56 @@
+#label application
+userLogin=User System *:
+password= password*:
+document= Document ID *:
+documentType=Document Type *:
+firstName = First Name *:
+secondName = Second Name :
+firstSurname = First surname *:
+secondSurname= Second surname :
+birthplace = Birthplace *:
+rhBlood = RH *:
+height = Height *:
+gender = Gender *:
+birthDay = Birthday *:
+labelSelect = Select..
+phone = phone *:
+email = email *:
+weight = weight *:
+temperature = temperature *:
+
+#titles
+
+appTitle = Covid Muestras APP
+appLogin= ENTRY USERS 
+appFail = NOT USER REGISTRER 
+
+#mensajes de errores 
+errorGeneral = LO SENTIMOS EXISTE UN ERROR:
+errorAutenticacion = NO SE PUDO LEER USUARIO Y CONTRASEÑA
+errorExistenciaUsuario=El usuario No se encuentra registrado en el sistema 
+errorCargarPropiedades=No se puede cargar informacion por el momento, por favor intente mas tarde
+errorCampos=Campo requerido 
+
+
+#buttons
+btnAcess =Acess
+btnForgotPas=SE ME OLVIDO LA CONTRASEÑA 
+btnCreate = create 
+botonSalir = salir 
+
+#mensajes
+passRecupera= HAS INGRESADOO A RECUPERAR TU PASSWORD
+passMess = TE RECUERDO TU CONTRASEÑA 
+
+#links
+linkLogin= ACCEDER A LOGIN PRICIPAL 
+
+#mensajes
+passRecupera=HAS INGRESADO A RECUPERAR TU PASSWORD
+passMess=SE TE OLVIDO TU PASSWORD 
+
+#headers 
+dataPerson = TOMA DE DATOS 
+dataRegisterPerson = VISITOR PERSON 
+dataTemp =Temperature 
+dataRegisterTemperature = Person Temperature 

@@ -1,0 +1,145 @@
+package com.usta.cmapp.control;
+
+import java.io.Serializable;
+import java.util.Properties;
+
+import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
+import com.coronavirus_mysql.model.Login;
+import com.usta.cmapp.constants.EnumDataBase;
+import com.usta.coronavirus.service.ServicesDao;
+
+@ManagedBean(name = "login")
+@SessionScoped
+
+public class LoginController implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public static final String USER_AUTENTICH = "user.app";
+
+	public static final String AUTH_KEY = "app.user.name";
+
+	private Properties properties; // se encarga de leer massages.properties
+
+	private String user;
+
+	private String password;
+
+	@EJB
+	private ServicesDao<Login> ServicesDaoMysql;
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@EJB
+	private ServicesDao<Login> servicesDaoMysql;
+
+	@EJB
+	private ServicesDao<com.coronavirus_postgres.model.Login> ServicesDaoPostgres;
+
+	public LoginController() {
+		super();
+
+		properties = new Properties();
+
+		try {
+			properties.load(LoginController.class.getResourceAsStream("messages.properties"));
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR:", "NO PUEDE LEER ARCHIVOS DE PROPIEDADES "));
+		}
+
+	}
+
+	@SuppressWarnings("unused")
+	public String acessCheck() {
+		String acces = null;
+
+		try {
+
+			Login l = ServicesDaoMysql.searchUser(user, password, EnumDataBase.MYSQL.getId());
+
+			if (l.getIdLogin() > 0) {
+				acces = "/page/principal";
+
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(AUTH_KEY, user);
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(USER_AUTENTICH,
+						l.getUsuario().trim());
+			} else if (l == null) {
+				com.coronavirus_postgres.model.Login lpos = new com.coronavirus_postgres.model.Login();
+
+				lpos = ServicesDaoPostgres.searchUser(user, password, EnumDataBase.POSTGRESQL.getId());
+
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(AUTH_KEY, user);
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(USER_AUTENTICH,
+						lpos.getUsuario().trim());
+
+				acces = "/page/principal";
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+						properties.getProperty("errorGeneral"), properties.getProperty("errorExistenciaUsuario")));
+				acces = "login/login";
+
+			}
+		} catch (Exception e) {
+
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					properties.getProperty("errorGeneral"), properties.getProperty("errorAutenticacion")));
+		}
+
+		return acces;
+
+	}
+
+	public void forgotPass() {
+		try {
+			Login login = ServicesDaoMysql.searchUser(user, password, EnumDataBase.MYSQL.getId());
+			if (login != null) {
+				password = login.getClave().trim();
+				setPassword(login.getClave().trim());
+				FacesContext.getCurrentInstance()
+						.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+								properties.getProperty("passMess"),
+								properties.getProperty("passRecupera").concat("TU CONTRASEÑA ES: ").concat(password)));
+			} else {
+				com.coronavirus_postgres.model.Login loginPostgres = ServicesDaoPostgres.searchUser(user, password,
+						EnumDataBase.POSTGRESQL.getId());
+				if (loginPostgres != null) {
+					password = loginPostgres.getClave().trim();
+					setPassword(loginPostgres.getClave().trim());
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+							properties.getProperty("passMess"),
+							properties.getProperty("passRecupera").concat("TU CONTRASEÑA ES: ").concat(password)));
+				} else {
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+							properties.getProperty("passMess"), properties.getProperty("errorExistenciaUsuario")));
+				}
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+
+		}
+	}
+}

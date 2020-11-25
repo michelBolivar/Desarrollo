@@ -1,0 +1,95 @@
+package com.usta.cmapp.control;
+
+import java.io.Serializable;
+import java.util.Properties;
+
+import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
+import com.coronavirus_mysql.model.Registro;
+import com.usta.coronavirus.service.ServicesDao;
+
+@ManagedBean(name = "registro")
+@SessionScoped
+public class RegisterController implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Properties properties;
+	private Registro registerPerson;
+	private String userAcces;
+	private String usLoged;
+
+	@EJB
+	private ServicesDao<Object> servicesDao;
+
+	public RegisterController() {
+
+		properties = new Properties();
+		userAcces = null;
+		registerPerson = new Registro();
+
+		chargeProperties();
+
+	}
+
+	private void chargeProperties() {
+
+		try {
+			properties.load(RegisterController.class.getResourceAsStream("messages.properties"));
+			userAcces = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+					.get(LoginController.USER_AUTENTICH.toUpperCase());
+
+			usLoged = ((String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+					.get(LoginController.AUTH_KEY)).toUpperCase();
+
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					properties.getProperty("errorGeneral"), properties.getProperty("errorCargarPropiedades")));
+		}
+	}
+
+	public final Properties getProperties() {
+		return properties;
+	}
+
+	public final void setProperties(Properties properties) {
+		this.properties = properties;
+	}
+
+	public final Registro getRegisterPerson() {
+		return registerPerson;
+	}
+
+	public final void setRegisterPerson(Registro registerPerson) {
+		this.registerPerson = registerPerson;
+	}
+
+	public final String getUserAcces() {
+		return userAcces;
+	}
+
+	public final void setUserAcces(String userAcces) {
+		this.userAcces = userAcces;
+	}
+
+	public final String getUsLoged() {
+		return usLoged;
+	}
+
+	public final void setUsLoged(String usLoged) {
+		this.usLoged = usLoged;
+	}
+
+	public final ServicesDao<Object> getServicesDao() {
+		return servicesDao;
+	}
+
+	public final void setServicesDao(ServicesDao<Object> servicesDao) {
+		this.servicesDao = servicesDao;
+	}
+
+}

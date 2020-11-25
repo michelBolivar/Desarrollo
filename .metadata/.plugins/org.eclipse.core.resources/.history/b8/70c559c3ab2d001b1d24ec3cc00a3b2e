@@ -1,0 +1,215 @@
+package com.coronavirus_mysql.model;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Date;
+
+
+/**
+ * The persistent class for the personas database table.
+ * 
+ */
+@Entity
+@Table(name="personas")
+@NamedQuery(name="Persona.findAll", query="SELECT p FROM Persona p")
+
+public class Persona implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	
+	public static final String FIND_ALL="Persona.Find_All";
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_persona")
+	private int idPersona;
+	
+	
+	@Column(name="documento")
+	private String documento;
+
+	@Column(name="email")
+	private String email;
+
+	@Column(name="estatura")
+	private float estatura;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="fecha_nacimiento")
+	private Date fechaNacimiento;
+
+	@Column(name="genero")
+	private short genero;
+
+	@Column(name="grupo_sanguineo")
+	private short grupoSanguineo;
+
+	@Column(name="id_ciudad")
+	private int idCiudad;
+
+	@Column(name="id_tipo_documento")
+	private int idTipoDocumento;
+
+	@Column(name="lugar_nacimiento")
+	private String lugarNacimiento;
+	
+	@Column(name="peso")
+	private float peso;
+
+	@Column(name="primer_apellido")
+	private String primerApellido;
+
+	@Column(name="primer_nombre")
+	private String primerNombre;
+
+	@Column(name="segundo_apellido")
+	private String segundoApellido;
+
+	@Column(name="segundo_nombre")
+	private String segundoNombre;
+
+	private float telefono;
+
+	@Column(name="tipo_documento")
+	private int tipoDocumento;
+
+	public Persona() {
+	}
+
+	public int getIdPersona() {
+		return this.idPersona;
+	}
+
+	public void setIdPersona(int idPersona) {
+		this.idPersona = idPersona;
+	}
+
+	public String getDocumento() {
+		return this.documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public float getEstatura() {
+		return this.estatura;
+	}
+
+	public void setEstatura(float estatura) {
+		this.estatura = estatura;
+	}
+
+	public Date getFechaNacimiento() {
+		return this.fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public short getGenero() {
+		return this.genero;
+	}
+
+	public void setGenero(short genero) {
+		this.genero = genero;
+	}
+
+	public short getGrupoSanguineo() {
+		return this.grupoSanguineo;
+	}
+
+	public void setGrupoSanguineo(short grupoSanguineo) {
+		this.grupoSanguineo = grupoSanguineo;
+	}
+
+	public int getIdCiudad() {
+		return this.idCiudad;
+	}
+
+	public void setIdCiudad(int idCiudad) {
+		this.idCiudad = idCiudad;
+	}
+
+	public int getIdTipoDocumento() {
+		return this.idTipoDocumento;
+	}
+
+	public void setIdTipoDocumento(int idTipoDocumento) {
+		this.idTipoDocumento = idTipoDocumento;
+	}
+
+	public String getLugarNacimiento() {
+		return this.lugarNacimiento;
+	}
+
+	public void setLugarNacimiento(String lugarNacimiento) {
+		this.lugarNacimiento = lugarNacimiento;
+	}
+
+	public float getPeso() {
+		return this.peso;
+	}
+
+	public void setPeso(float peso) {
+		this.peso = peso;
+	}
+
+	public String getPrimerApellido() {
+		return this.primerApellido;
+	}
+
+	public void setPrimerApellido(String primerApellido) {
+		this.primerApellido = primerApellido;
+	}
+
+	public String getPrimerNombre() {
+		return this.primerNombre;
+	}
+
+	public void setPrimerNombre(String primerNombre) {
+		this.primerNombre = primerNombre;
+	}
+
+	public String getSegundoApellido() {
+		return this.segundoApellido;
+	}
+
+	public void setSegundoApellido(String segundoApellido) {
+		this.segundoApellido = segundoApellido;
+	}
+
+	public String getSegundoNombre() {
+		return this.segundoNombre;
+	}
+
+	public void setSegundoNombre(String segundoNombre) {
+		this.segundoNombre = segundoNombre;
+	}
+
+	public float getTelefono() {
+		return this.telefono;
+	}
+
+	public void setTelefono(float telefono) {
+		this.telefono = telefono;
+	}
+
+	public int getTipoDocumento() {
+		return this.tipoDocumento;
+	}
+
+	public void setTipoDocumento(int tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+
+}

@@ -1,0 +1,124 @@
+package com.coronavirus_mysql.model;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the empresas database table.
+ * 
+ */
+@Entity
+@Table(name="empresas")
+
+public class Empresa implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	
+	public static final String FIND_ALL="Empresa.FIND_ALL";
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_empresa")
+	private int idEmpresa;
+
+	@Column(name="cantidad_empleados")
+	private int cantidadEmpleados;
+
+	@Column(name="direccion")
+	private String direccion;
+
+	@Column(name="email")
+	private String email;
+
+	@Column(name="nit")
+	private int nit;
+
+	@Column(name= "nombres")
+	private String nombreEmpresa;
+
+	@Column(name="numero_verificacion")
+	private int numeroVerificacion;
+
+	@Column(name="representante")
+	private String representante;
+
+	@Column(name="telefono")
+	private float telefono;
+
+	public Empresa() {
+	}
+
+	public int getIdEmpresa() {
+		return this.idEmpresa;
+	}
+
+	public void setIdEmpresa(int idEmpresa) {
+		this.idEmpresa = idEmpresa;
+	}
+
+	public int getCantidadEmpleados() {
+		return this.cantidadEmpleados;
+	}
+
+	public void setCantidadEmpleados(int cantidadEmpleados) {
+		this.cantidadEmpleados = cantidadEmpleados;
+	}
+
+	public String getDireccion() {
+		return this.direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getNit() {
+		return this.nit;
+	}
+
+	public void setNit(int nit) {
+		this.nit = nit;
+	}
+
+	public String getNombres() {
+		return this.nombreEmpresa;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombreEmpresa = nombres;
+	}
+
+	public int getNumeroVerificacion() {
+		return this.numeroVerificacion;
+	}
+
+	public void setNumeroVerificacion(int numeroVerificacion) {
+		this.numeroVerificacion = numeroVerificacion;
+	}
+
+	public String getRepresentante() {
+		return this.representante;
+	}
+
+	public void setRepresentante(String representante) {
+		this.representante = representante;
+	}
+
+	public float getTelefono() {
+		return this.telefono;
+	}
+
+	public void setTelefono(float telefono) {
+		this.telefono = telefono;
+	}
+
+}

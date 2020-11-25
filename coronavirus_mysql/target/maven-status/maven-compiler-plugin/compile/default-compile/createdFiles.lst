@@ -1,0 +1,12 @@
+com\coronavirus_mysql\model\Empresa.class
+com\coronavirus_mysql\model\EmpresaLogin.class
+com\coronavirus_mysql\model\HistoricoDecreto.class
+com\coronavirus_mysql\model\Decreto.class
+com\coronavirus_mysql\model\EmpresaLoginPK.class
+com\coronavirus_mysql\model\Login.class
+com\coronavirus_mysql\model\Tipodocumento.class
+com\coronavirus_mysql\model\Departamento.class
+com\coronavirus_mysql\model\Enfermedade.class
+com\coronavirus_mysql\model\Ciudade.class
+com\coronavirus_mysql\model\Persona.class
+com\coronavirus_mysql\model\Registro.class

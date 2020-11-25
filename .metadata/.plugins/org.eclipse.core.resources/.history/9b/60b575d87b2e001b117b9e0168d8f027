@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.2"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd">
+
+	<named-query name="Ciudade.FIND_ALL">
+		<query>
+		SELECT c
+		FROM Ciudade c
+       </query>
+	</named-query>
+
+	<named-query name="Decreto.Find_All">
+		<query>
+	    SELECT d FROM Decreto d
+	  </query>
+	</named-query>
+
+	<named-query name="Empresa.Find_All">
+		<query>
+		SELECT e FROM Empresa e
+	</query>
+	</named-query>
+
+	<named-query name="EmpresaLogin.Find_All">
+		<query>
+		SELECT e FROM EmpresaLogin e
+		</query>
+	</named-query>
+
+	<named-query name="Enfermedade.Find_All">
+		<query>
+	SELECT e FROM Enfermedade e
+	</query>
+	</named-query>
+
+	<named-query name="HistoricoDecreto.Find_All">
+		<query>
+	SELECT h FROM HistoricoDecreto h
+	</query>
+	</named-query>
+
+	<named-query name="Login.Find_All">
+		<query>
+	SELECT l FROM Login l
+		</query>
+	</named-query>
+
+
+	<named-query name="Personas.Find_All">
+		<query>
+    SELECT p FROM Persona p
+       </query>
+	</named-query>
+
+	<named-query name="Registro.Find_All">
+		<query>
+      SELECT r FROM Registro r
+    </query>
+	</named-query>
+
+
+	<named-query name="Tipodocumento.Find_All">
+		<query>
+      SELECT t FROM Tipodocumento t
+      </query>
+
+	</named-query>
+
+
+	<named-query name="Login.FIND_USER_CREDENTIALS">
+		<query>
+      SELECT l
+      FROM  Login l
+      WHERE l.usuario=:us
+      AND l.clave= :ps
+      </query>
+
+	</named-query>
+
+	<named-query name="Login.FIND_USER">
+
+		<query>
+	  SELECT l
+      FROM  Login l
+      WHERE l.usuario=:user
+	</query>
+	</named-query>
+	
+	<named-query name="Personas.FIND_BY_DOCUMENT">
+
+		<query>
+	   SELECT p 
+	   FROM Persona p
+      WHERE p.documento=:doc 
+	</query>
+	</named-query>
+</entity-mappings>

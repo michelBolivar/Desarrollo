@@ -1,0 +1,11 @@
+com\coronavirus_postgres\model\HistoricosDecreto.class
+com\coronavirus_postgres\model\Enfermedade.class
+com\coronavirus_postgres\model\TiposDocumento.class
+com\coronavirus_postgres\model\Persona.class
+com\coronavirus_postgres\model\Ciudade.class
+com\coronavirus_postgres\model\Decreto.class
+com\coronavirus_postgres\model\Empresa.class
+com\coronavirus_postgres\model\Login.class
+com\coronavirus_postgres\model\Registro.class
+com\coronavirus_postgres\model\Departamento.class
+com\coronavirus_postgres\model\EmpresasLogin.class

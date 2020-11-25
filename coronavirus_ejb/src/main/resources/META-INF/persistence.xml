@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="coronavirus_mysql">
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/env/jdbc/coronavirus</jta-data-source>
+		<mapping-file>/META-INF/mysql-orm.xml</mapping-file>
+		<class>com.coronavirus_mysql.model.Ciudade</class>
+		<class>com.coronavirus_mysql.model.Decreto</class>
+		<class>com.coronavirus_mysql.model.Departamento</class>
+		<class>com.coronavirus_mysql.model.EmpresaLogin</class>
+		<class>com.coronavirus_mysql.model.EmpresaLoginPK</class>
+		<class>com.coronavirus_mysql.model.Empresa</class>
+		<class>com.coronavirus_mysql.model.Enfermedade</class>
+		<class>com.coronavirus_mysql.model.HistoricoDecreto</class>
+		<class>com.coronavirus_mysql.model.Login</class>
+		<class>com.coronavirus_mysql.model.Persona</class>
+		<class>com.coronavirus_mysql.model.Registro</class>
+		<class>com.coronavirus_mysql.model.Tipodocumento</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<properties>
+			<property name="hibernate.connection.driver_class"
+				value="com.postgresql.Driver" />
+			<property name="hiberbate_dialect"
+				value="org.hibernate.dialect.MySQLDialect" />
+		</properties>
+	</persistence-unit>
+	<persistence-unit name="coronavirus_postgres">
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/env/jdbc/coronaviruspostgres</jta-data-source>
+		<mapping-file>/META-INF/postgres-orm.xml</mapping-file>
+		<class>com.coronavirus_postgres.model.Ciudade</class>
+		<class>com.coronavirus_postgres.model.Decreto</class>
+		<class>com.coronavirus_postgres.model.Departamento</class>
+		<class>com.coronavirus_postgres.model.Empresa</class>
+		<class>com.coronavirus_postgres.model.EmpresasLogin</class>
+		<class>com.coronavirus_postgres.model.Enfermedade</class>
+		<class>com.coronavirus_postgres.model.HistoricosDecreto</class>
+		<class>com.coronavirus_postgres.model.Login</class>
+		<class>com.coronavirus_postgres.model.Persona</class>
+		<class>com.coronavirus_postgres.model.Registro</class>
+		<class>com.coronavirus_postgres.model.TiposDocumento</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<properties>
+			<property name="hibernate.connection.driver_class "
+				value="com.postgresql.Driver" />
+			<property name="hiberbate_dialect"
+				value="org.hibernate.dialect.PostgreSQL82Dialect" />
+		</properties>
+	</persistence-unit>
+</persistence>
